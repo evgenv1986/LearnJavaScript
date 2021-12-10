@@ -21,7 +21,6 @@ function createPlayer(name, weapon, img, hp){
     
     const $player = document.createElement('div');
     $player.classList.add('player');
-    //$player.name = name;
 
     const $progressbar = document.createElement('div');
     $progressbar.classList.add('progressbar');
@@ -34,7 +33,7 @@ function createPlayer(name, weapon, img, hp){
 
     const $name = document.createElement('div');
     $name.classList.add('name');
-    $name.innerText = name;
+    $name.innerText = player1.name;
     $progressbar.appendChild($name);
 
     const $character = document.createElement('div');
@@ -42,7 +41,7 @@ function createPlayer(name, weapon, img, hp){
     $player.appendChild($character);
 
     const $img = document.createElement('img');
-    $img.src = img;
+    $img.src = player1.img;
     $character.appendChild($img);
     
     $arenas.appendChild($player);
@@ -61,6 +60,4 @@ const $player2 = createPlayer(
     'http://reactmarathon-api.herokuapp.com/assets/liukang.gif'
     ,144);    
 
-//console.log($player1);
-//console.log($player2);
 console.log($arenas);
