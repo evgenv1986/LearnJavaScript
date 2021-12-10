@@ -8,15 +8,19 @@ const player = {
     }
 };
 
-function createPlayer(name, weapon, img){
+const $arenas = document.createElement('div');
+$arenas.classList.add('arenas');
+
+function createPlayer(name, weapon, img, hp){
     const 
       player1 = player;
           player1.name = name;
           player1.weapon = weapon;
           player1.img = img;
+          player1.hp = hp;
     
     const $player = document.createElement('div');
-    $player.classList.add('player1');
+    $player.classList.add('player');
     //$player.name = name;
 
     const $progressbar = document.createElement('div');
@@ -25,6 +29,7 @@ function createPlayer(name, weapon, img){
 
     const $life = document.createElement('div');
     $life.classList.add('life');
+    $life.innerText = player1.hp;
     $progressbar.appendChild($life);
 
     const $name = document.createElement('div');
@@ -39,38 +44,23 @@ function createPlayer(name, weapon, img){
     const $img = document.createElement('img');
     $img.src = img;
     $character.appendChild($img);
-
-    //$player.appendChild($name);
-    //$player.appendChild(player1);
-
-    //const $progressbar = document.createElement('div');
-    /*
-    $div.appendChild($progressbar);
     
-    const $lifeDiv = document.createElement('div');
-    const $life = progressbar.name = 'life';
-    $lifeDiv.classList.add($life);    
-    $progressbar.appendChild($lifeDiv);
+    $arenas.appendChild($player);
 
-    const $nameDiv = document.createElement('div');
-    const $name = 'name';
-    $nameDiv.innerText = 'scorpion';
-    $nameDiv.classList.add($name);
-    $progressbar.appendChild($nameDiv);
-
-
-    const $characterDiv = document.createElement('div');
-    const $character = 'character';
-    $characterDiv.classList.add($character);
-    $div.appendChild($characterDiv);
-
-    const $img = document.createElement('img');
-    $img.src = "http://reactmarathon-api.herokuapp.com/assets/scorpion.gif";
-    $characterDiv.appendChild($img);
-*/
-
-    return $player;
-
+    return $arenas;
 };
-const $player1 = createPlayer('sonya', 'weap', 'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif');
-console.log($player1);
+const $player1 = createPlayer(
+    'sonya', 
+    'weap', 
+    'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif'
+    ,99);
+
+const $player2 = createPlayer(
+    'luKan', 
+    'mistic', 
+    'http://reactmarathon-api.herokuapp.com/assets/liukang.gif'
+    ,144);    
+
+//console.log($player1);
+//console.log($player2);
+console.log($arenas);
