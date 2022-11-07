@@ -1,43 +1,29 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 
-class Clicker extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 0,
-    };
-  }
+function Clicker() {
+  const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(false);
 
-  handleIncrement = () => {
-    this.setState({ count: this.state.count + 1 });
+  const increment = () => {
+    setCount(count + 1);
   };
 
-  handleDecrement = () => {
-    this.setState({ count: this.state.count - 1 });
+  const decrement = () => {
+    setCount(count - 1);
   };
 
-  compomenetDidMount() {
-    console.log('compomenetDidMount');
-  }
+  useEffect(() => {
+    console.log('hello from clicker', count);
+    return () => console.log('good by clicker');
+  }, [count]);
 
-  componentDidUpdate() {
-    console.log('componentDidUpdate');
-  }
-
-  componentWillUnmount() {
-    console.log('componentWillUnmount');
-  }
-
-  render() {
-    console.log('render, count = ' + this.state.count);
-    return (
-      <div className="Clicker" style={{ margin: 'auto', width: '3' }}>
-        <button onClick={this.handleDecrement}>-</button>
-        <span style={countStyle}>{this.state.count}</span>
-        <button onClick={this.handleIncrement}>+</button>
-      </div>
-    );
-  }
+  return (
+    <div className="Clicker" style={{ margin: 'auto', width: '3' }}>
+      <button onClick={decrement}>-</button>
+      <span style={countStyle}>{count}</span>
+      <button onClick={increment}>+</button>
+    </div>
+  );
 }
 
 export { Clicker };

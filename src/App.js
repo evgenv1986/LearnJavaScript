@@ -1,11 +1,17 @@
 //import './App.css';
+import React, {useState} from 'react';
 import {Clicker} from './clicker/Clicker';
 
 function App() {
+  const [isClicker, setClicker] = useState(false);
+
   return (
     <div className="App">
         <div>
-          <Clicker />
+          <button onClick={ () => setClicker(!isClicker)}>
+            Toggle clicker
+          </button>
+          {isClicker && <Clicker />}
         </div>
     </div>
   );
