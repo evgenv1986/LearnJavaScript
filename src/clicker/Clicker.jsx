@@ -16,7 +16,20 @@ class Clicker extends React.Component {
     this.setState({ count: this.state.count - 1 });
   };
 
+  compomenetDidMount() {
+    console.log('compomenetDidMount');
+  }
+
+  componentDidUpdate() {
+    console.log('componentDidUpdate');
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
+  }
+
   render() {
+    console.log('render, count = ' + this.state.count);
     return (
       <div className="Clicker" style={{ margin: 'auto', width: '3' }}>
         <button onClick={this.handleDecrement}>-</button>
