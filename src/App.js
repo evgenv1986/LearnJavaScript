@@ -12,8 +12,3 @@ function App() {
 }
 
 export default App;
-
-const countStyle = {
-  margin: '0 0.75rem',
-  display: 'inline-block'
-}
