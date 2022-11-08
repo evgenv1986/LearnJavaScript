@@ -5,7 +5,8 @@ function Clicker() {
   const [loading, setLoading] = useState(false);
 
   const increment = () => {
-    setCount(count + 1);
+    // setCount(count + 1);
+    setCount((prevCount) => prevCount + 1);
   };
 
   const decrement = () => {
