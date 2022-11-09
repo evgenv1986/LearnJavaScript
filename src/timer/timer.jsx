@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import React, { Component } from 'react';
 
 class Timer extends React.Component {
@@ -9,59 +10,53 @@ class Timer extends React.Component {
     };
   }
 
-  componentDidMount() {}
-  compomentDidUpdate() {}
-  componentWillUnmount() {}
-}
-
-/*
-import React, { Component } from 'react';
-
-class Clicker extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 0,
-    };
+  componentDidMount() {
+    console.log('componentDidMount');
+    const userCount = localStorage.getItem('timer');
+    console.log('userCount: ' + userCount);
+    if (userCount) {
+      this.setState({ count: +userCount });
+    }
   }
-
-  handleIncrement = () => {
-    this.setState({ count: this.state.count + 1 });
-  };
-
-  handleDecrement = () => {
-    this.setState({ count: this.state.count - 1 });
-  };
-
-  compomenetDidMount() {
-    console.log('compomenetDidMount');
-  }
-
   componentDidUpdate() {
-    console.log('componentDidUpdate');
+    console.log('compomentDidUpdate');
+    localStorage.setItem('timer', this.state.count);
+    console.log('this.state.count: ' + this.state.count);
+  }
+  componentWillUnmount() {
+    clearInterval(this.counterId);
   }
 
-  componentWillUnmount() {
-    console.log('componentWillUnmount');
-  }
+  handleStart = () => {
+    this.setState({ isCounting: true });
+    this.counterId = setInterval(() => {
+      this.setState({ count: this.state.count + 1 });
+    }, 1000);
+  };
+
+  handleStop = () => {
+    this.setState({ isCounting: false });
+    clearInterval(this.counterId);
+  };
+
+  handleReset = () => {
+    this.setState({ count: 0 });
+  };
 
   render() {
-    console.log('render, count = ' + this.state.count);
     return (
-      <div className="Clicker" style={{ margin: 'auto', width: '3' }}>
-        <button onClick={this.handleDecrement}>-</button>
-        <span style={countStyle}>{this.state.count}</span>
-        <button onClick={this.handleIncrement}>+</button>
+      <div className="Timer">
+        <h1>React Timer</h1>
+        <h3> {this.state.count}</h3>
+        {!this.state.isCounting ? (
+          <button onClick={this.handleStart}>Start</button>
+        ) : (
+          <button onClick={this.handleStop}>Stop</button>
+        )}
+        <button onClick={this.handleReset}>Reset</button>
       </div>
     );
   }
 }
 
-export { Clicker };
-
-const countStyle = {
-  margin: '0 0.75rem',
-  display: 'inline-block',
-};
-
-*/
+export { Timer };

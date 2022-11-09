@@ -1,6 +1,7 @@
 //import './App.css';
 import React, {useState} from 'react';
 import {Clicker} from './clicker/Clicker';
+import {Timer} from './timer/timer';
 
 function App() {
   const [isClicker, setClicker] = useState(false);
@@ -12,6 +13,9 @@ function App() {
             Toggle clicker
           </button>
           {isClicker && <Clicker />}
+        </div>
+        <div>
+          <Timer />
         </div>
     </div>
   );
