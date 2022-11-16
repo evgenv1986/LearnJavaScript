@@ -5,6 +5,7 @@ import {Timer} from './timer/timer';
 
 function App() {
   const [isClicker, setClicker] = useState(false);
+  const [isTimer, setTimer] = useState(false);
 
   return (
     <div className="App">
@@ -15,7 +16,8 @@ function App() {
           {isClicker && <Clicker />}
         </div>
         <div>
-          <Timer />
+          <button onClick={() => setTimer(!isTimer)}>Toggle timer</button>
+          {isTimer && <Timer />}
         </div>
     </div>
   );
